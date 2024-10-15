@@ -24,25 +24,25 @@ The dataset used in this project is the screenplay of the movie “The Dark Nigh
 
 - Get Props
 
-  Strategy: 
+  #### Strategy: 
   - manually labeled a dataset including objects and labels. If an object is a prop, the label is one, otherwise the label is 0.
   - train a bert-based classification model to classify if an object is a prop.
   - leveraging pre-trained NER model in spacy to extract objects from scene text.
   - using above classification model to classify props in extracted objects. 
 
-  Limitations:
+  #### Limitations:
   - The training dataset for prop classification model is very small, only labeled about 100 objects and includes a few props. If we could have a prop database contains most used props, the model accuracy could be           much better.
   - Since I used 2 models here, first to extract objects from scene text, second to classify prop, It’s not very efficient.
 
 - Get Person 
 
-  Strategy:
+  #### Strategy:
   Use the Flair package to extract person names in scene context. Also tried other models, such as dslim/distilbert-NER, Flair has better performance here.
 
-  Limitation: 
+  #### Limitation: 
   The model can only recognize names in text, if there is no specific name, such as “the man”, the model cannot recognize there is a person, need fine-tune.
 
-  Improvement:
+  #### Improvement:
   The above procedure used different models to infer props and person in a scene, and has limitations in accuracy and efficiency. The improvement is to develop one single model to classify multiple categories. One         approach is to pre-trained model like BERT or RoBERTa and fine-tune it on labeled dataset.
   For example, each object is classified as one of the following categories:
 
@@ -61,7 +61,7 @@ The dataset used in this project is the screenplay of the movie “The Dark Nigh
   To simplify the problem, the approach here is to identify and quantify resources for each scene, and assign cost factors to each resource. There is one example in the notebook, the cost factors are made up and may not    be correct. 
 
 
-### Scheduling (scenes_schedule.ipynb)
+### Movie Scenes Scheduling (scenes_schedule.ipynb)
 
 To simplify the problem, a few assumptions are made here:
 
@@ -87,12 +87,12 @@ To simplify the problem, a few assumptions are made here:
     - Encourage scenes have same actors are assigned to the same day.
     - Encourage consecutive days to have the same location.
 
-Limitations:
+#### Limitations:
   
 - The problem is simplified here, the cost of actors, props, scene settings and many other factors are not considered here.
 -	The MILP algorithm developed here is not very efficient and the performance also seems not very good. Need to tune the objective function and constraints to achieve better results.
 
-  Improvement:
+#### Improvement:
   
   -	Consider more factors such different daily wage of actors, cost of the crew, waiting time for the actors, transfer cost of the scene location, etc.
   -	Develop other methods such as tabu search based method (TSBM) and particle swarm optimization based method (PSOBM) to solve large-scale problems.
