@@ -10,6 +10,13 @@ The dataset used in this project is the screenplay of the movie “The Dark Nigh
 ### Data Cleaning and Exploration (data_cleaning.ipynb)
 
   This step is parsing the screenplay pdf file and extract key scene information by leveraging the structure of a standard screenpaly. The output is a dataset in which each row represents a scene. The dataset includes     the following attributes:
+  - scene_id: the id of scene (based on the sequence of the screenplay)
+  - category: either INT or EXT
+  - location: the location of scene (parsed from the title of scene)
+  - time_of_day: the time of scene (parsed from the title of scene)
+  - num_characters: number of characters that has dialog in the scene
+  - characters: list of names of characters that has dialog in the scene (capitalized and centered on the screenplay)
+  - text: full text of the scene
 
 ### Generate Scene Metadata (extract_metadata.ipynb)
 
